@@ -1,0 +1,35 @@
+CREATE DATABASE BusinessGame
+
+create table products (
+     id int IDENTITY(1, 1) PRIMARY KEY,
+     nome varchar(15),
+     prezzo money,
+	 quantita int
+)
+
+create table users (
+     id int IDENTITY(1, 1) PRIMARY KEY,
+     nome varchar(50),
+)
+
+create table carts (
+     id int IDENTITY(1, 1) PRIMARY KEY,
+     id_user int,
+	 FOREIGN KEY(id_user) REFERENCES users(id),
+)
+
+create table shops (
+     id int IDENTITY(1, 1) PRIMARY KEY,
+     nome varchar(50),
+	 id_product int,
+	 FOREIGN KEY(id_product) REFERENCES products(id),
+)
+
+create table cart_product (
+     id int IDENTITY(1, 1) PRIMARY KEY,
+     id_cart int,
+	 id_product int,
+	 quantity int,
+	 FOREIGN KEY(id_cart) REFERENCES carts(id),
+	 FOREIGN KEY(id_product) REFERENCES products(id),
+)

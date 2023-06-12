@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewData["Title"] = "ElencoUtenti";
+}
+
+<h1>Lista Utenti</h1>
+
+<hr />
+
+<p class="my-4">
+	<a asp-action="NuovoUtente" class="text-decoration-none fw-bold">Inserisci un nuovo utente</a>
+</p>
+
+<table class="table table-bordered border border-2 border-dark">
+
+	<tr class="bg-dark text-light border-light">
+		<th>Id</th>
+		<th>Nome</th>
+		<th class="col-1 text-center">Modifica</th>
+	</tr>
+
+	@foreach (var item in Model)
+	{
+		<tr class="bg-light align-middle">
+			<td>@item.Id</td>
+			<td>@item.Nome</td>
+			<td class="text-center">
+				<a asp-action="ModificaUtente" asp-route-id="@item.Id">
+					<button class="btn btn-warning">
+						<i class="fa-regular fa-pen-to-square"></i>
+					</button>
+				</a>
+			</td>
+		</tr>
+	}
+</table>
