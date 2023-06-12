@@ -27,21 +27,37 @@ namespace BusinessGame.Controllers
         }
 
         [HttpPost]
-        public IActionResult NuovoUtente(Users utente)
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> NuovoUtente([Bind("Id,Nome")] Users utente)
         {
-            _context.Users.Add(utente);
-            _context.SaveChanges();
-            return RedirectToAction("ElencoUtenti");
+            if (ModelState.IsValid)
+            {
+				_context.Users.Add(utente);
+				await _context.SaveChangesAsync();
+				return RedirectToAction("ElencoUtenti");
+			}
+			return View(utente);
+
+		}
+
+		public async Task<IActionResult> ModificaUtente(int? id)
+        {
+			if (id == null || _context.Users == null)
+			{
+				return NotFound();
+			}
+
+			var utente = await _context.Users.FindAsync(id);
+			if (utente == null)
+			{
+				return NotFound();
+			}
+			return View(utente);
         }
 
-        public IActionResult ModificaUtente(int? id)
-        {
-            var utente = _context.Users.Find(id);
-            return View(utente);
-        }
-
-        [HttpPost]
-        public IActionResult ModificaUtente(Users utente)
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public IActionResult ModificaUtente(Users utente)
         {
             _context.Users.Update(utente);
             _context.SaveChanges();

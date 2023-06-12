@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "AggiungiProdotto";
+}
+
+<div class="container">
+	<div class="d-flex align-items-center justify-content-between">
+		<h1>Aggiungi Prodotto</h1>
+		<a asp-action="Index" class="text-light">
+			<button class="btn btn-success rounded-circle">
+				<i class="fa-solid fa-arrow-left"></i>
+			</button>
+		</a>
+	</div>
+
+	<hr />
+
+	<form method="post">
+
+		<div class="row my-3">
+			<div class="col">
+				Scegli il prodotto da aggiungere:
+			</div>
+			<div class="col">
+				<select name="idprodotto" class="form-control" asp-items="ViewBag.Prodotto"></select>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col">
+			</div>
+			<div class="col">
+				<input class="btn btn-success" type="submit" value="Aggiungi" />
+			</div>
+		</div>
+
+	</form>
+</div>
+

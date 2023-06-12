@@ -1,0 +1,46 @@
+﻿@{
+	ViewData["Title"] = "Index";
+}
+
+<h1>Negozio</h1>
+
+<hr class="my-4"/>
+
+<table class="table table-bordered border border-2 border-dark">
+	<thead>
+		<tr class="bg-dark text-light border-light">
+			
+			<th>
+				Prodotto
+			</th>
+			<th class="col-1 text-center">Modifica</th>
+			<th class="col-2 text-center">Aggiungi Prodotto</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr class="bg-light align-middle">
+				
+				<td>
+					@item.Prodotto
+				</td>
+				<td class="text-center">
+					<a asp-action="Edit" asp-route-id="@item.Id">
+						<button class="btn btn-warning">
+							<i class="fa-regular fa-pen-to-square"></i>
+						</button>
+					</a>
+
+				</td>
+				<td class="text-center">
+					<a asp-action="AggiungiProdotto" asp-route-id="@item.Id">
+						<button class="btn btn-success">
+							<i class="fa-regular fa-plus"></i>
+						</button>
+					</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

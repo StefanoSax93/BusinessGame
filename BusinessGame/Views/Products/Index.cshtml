@@ -1,0 +1,56 @@
+﻿@model IEnumerable<BusinessGame.Models.Products>
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+<h1>Lista Prodotti</h1>
+
+<p class="my-4">
+	<a asp-action="Create" class="text-decoration-none fw-bold">Inserisci nuovo prodotto</a>
+</p>
+<table class="table table-bordered border border-2 border-dark">
+
+	<tr class="bg-dark text-light border-light">
+		<th>
+			Id
+		</th>
+		<th>
+			Nome
+		</th>
+		<th>
+			Prezzo
+		</th>
+		<th>
+			Quantità
+		</th>
+		<th class="text-center col-1">
+			Modifica
+		</th>
+	</tr>
+
+	@foreach (var item in Model)
+	{
+		<tr class="bg-light align-middle">
+			<td>
+				@item.Id
+			</td>
+			<td>
+				@item.Nome
+			</td>
+			<td>
+				@string.Format("{0:0.00}", item.Prezzo) €
+			</td>
+			<td>
+				@item.Quantita
+			</td>
+			<td class="text-center">
+				<a asp-action="Edit" asp-route-id="@item.Id">
+					<button class="btn btn-warning">
+						<i class="fa-regular fa-pen-to-square"></i>
+					</button>
+				</a>
+			</td>
+		</tr>
+	}
+</table>
