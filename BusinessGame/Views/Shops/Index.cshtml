@@ -13,6 +13,9 @@
 			<th>
 				Prodotto
 			</th>
+			<th>
+				Quantità
+			</th>
 			<th class="col-1 text-center">Modifica</th>
 			<th class="col-2 text-center">Aggiungi Prodotto</th>
 		</tr>
@@ -24,6 +27,9 @@
 				
 				<td>
 					@item.Prodotto
+				</td>
+				<td>
+					@item.Quantità
 				</td>
 				<td class="text-center">
 					<a asp-action="Edit" asp-route-id="@item.Id">

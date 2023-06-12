@@ -23,14 +23,17 @@ namespace BusinessGame.Controllers
         {
 			var query = from n in _context.Shops
 						join p in _context.Products on n.IdProduct equals p.Id
+						group p by p into g
 						select new
 						{
-                            Id = n.Id,
-							Prodotto = p.Nome
+                            Id = g.Key.Id,
+							Prodotto = g.Key.Nome,
+							Quantità = g.Count()
 						};
-            return View(query);
-			
-        }
+
+			return View(query);
+
+		}
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Shops == null)
